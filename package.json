@@ -17,9 +17,6 @@
   },
   "homepage": "https://github.com/Yann-Qiu/pion-webrtc-demo#readme",
   "dependencies": {
-    "lit": "^2.2.8",
-    "lit-element": "^3.2.2",
-    "socket.io": "^4.5.1",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
   },
