@@ -94,7 +94,25 @@
 
         async onRoomStatus (msg) {
           const textReady = msg.text_stream_state;
-          const config = localStorage.getItem('ice-config');
+          let config = localStorage.getItem('ice-config');
+          // config = ```
+          // {
+          //   "iceServers": [
+          //     {
+          //       "urls":"turn:yanfeng.net:1312?transport=udp",
+          //       "credential":"test@test",
+          //       "credentialType":"password",
+          //       "username":"test"
+          //     },
+          //     {
+          //       "urls":"turn:yanfeng2.net:312?transport=tcp",
+          //       "credential":"test@test",
+          //       "credentialType":"password",
+          //       "username":"test"
+          //     }
+          //   ]
+          // }
+          // ```
           if (textReady) {
             window.localConnection = this._localConnection = config ? new RTCPeerConnection(JSON.parse(config)) : new RTCPeerConnection();
             this._localConnection.addEventListener('icecandidate', async e => {
