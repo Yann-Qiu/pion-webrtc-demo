@@ -94,11 +94,12 @@
 
         async onRoomStatus (msg) {
           const textReady = msg.text_stream_state;
+          const config = localStorage.getItem('ice-config');
           if (textReady) {
-            window.localConnection = this._localConnection = new RTCPeerConnection();
+            window.localConnection = this._localConnection = config ? new RTCPeerConnection(config) : new RTCPeerConnection();
             this._localConnection.addEventListener('icecandidate', async e => {
+              e.candidate && this.candidateList.push(e.candidate)
               console.log('Add candidate', e.candidate)
-              this.candidateList.push(e.candidate)
               if (this.hasSetRemote) {
                 this.sendCandidate()
               }
